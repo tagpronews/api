@@ -39,4 +39,38 @@ class HomeController extends Controller
         return $this->error(['This broke!', 'And that!', 'You can\' go here!'], 403);
     }
 
+    public function transformExample()
+    {
+        $data = [
+            [
+                'name' => 'frank',
+                'colour' => 1
+            ],
+            [
+                'name' => 'fred',
+                'colour' => 0
+            ],
+            [
+                'name' => 'bob',
+                'colour' => 1
+            ],
+            [
+                'name' => 'phil',
+                'colour' => 1
+            ],
+        ];
+
+        return $this->setMeta(['count' => count($data)])->transform('BasicTransformer', $data);
+    }
+
+    public function transformItemExample()
+    {
+        $data = [
+            'name' => 'frank',
+            'colour' => 1
+        ];
+
+        return $this->transformItem('BasicTransformer', $data);
+    }
+
 }

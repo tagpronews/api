@@ -14,3 +14,7 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('error', 'HomeController@badRequest');
+
+Route::get('transform', 'HomeController@transformExample');
+
+Route::get('transformItem', 'HomeController@transformItemExample');
