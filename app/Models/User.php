@@ -1,4 +1,4 @@
-<?php namespace TagProNews;
+<?php namespace TagProNews\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

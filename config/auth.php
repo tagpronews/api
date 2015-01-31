@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'TagProNews\User',
+	'model' => 'TagProNews\Models\User',
 
 	/*
 	|--------------------------------------------------------------------------
