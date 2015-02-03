@@ -10,11 +10,22 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// examples
+Route::get('/', 'HomeController@index');
+Route::get('error', 'HomeController@badRequest');
+Route::get('transform', 'HomeController@transformExample');
+Route::get('transformItem', 'HomeController@transformItemExample');
+// examples end
 
-get('/', 'HomeController@index');
+Route::group(['prefix' => 'v1'], function () {
 
-get('error', 'HomeController@badRequest');
+    Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
+        Route::post('login', 'Auth\AuthController@login');
+        Route::post('register', 'Auth\AuthController@register');
+        Route::post('resetPassword', 'Auth\AuthController@resetPassword');
+    });
 
-get('transform', 'HomeController@transformExample');
-
-get('transformItem', 'HomeController@transformItemExample');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('auth/logout', 'Auth\AuthController@logout');
+    });
+});

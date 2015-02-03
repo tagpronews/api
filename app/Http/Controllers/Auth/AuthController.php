@@ -1,38 +1,46 @@
 <?php namespace TagProNews\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use TagProNews\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use TagProNews\Http\Requests\Auth\LoginRequest;
+use TagProNews\Models\Token;
 
-class AuthController extends Controller {
+/**
+ * Created by PhpStorm.
+ * User: steve
+ * Date: 03.02.15
+ * Time: 20:37
+ */
+class AuthController extends Controller
+{
 
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
+    public function login(LoginRequest $request)
+    {
+        if (!Auth::once($request->all())) {
+            return response()->json(['errors' => ['Invalid login credentials']], 401);
+        }
 
-	use AuthenticatesAndRegistersUsers;
+        $factory = new \RandomLib\Factory;
+        $generator = $factory->getMediumStrengthGenerator();
+        $token = $generator->generateString(64);
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct(Guard $auth, Registrar $registrar)
-	{
-		$this->auth = $auth;
-		$this->registrar = $registrar;
+        Token::create(['user_id' => 1, 'token' => $token]);
 
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
+        return response()->json(['data' => ['token' => $token]]);
+    }
 
+    public function logout()
+    {
+
+    }
+
+    public function register()
+    {
+
+    }
+
+    public function resetPassword()
+    {
+
+    }
 }

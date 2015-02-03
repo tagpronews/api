@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*@dev",
-		"league/fractal": "0.11.*"
+		"league/fractal": "0.11.*",
+		"ircmaxell/random-lib": "~1.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
