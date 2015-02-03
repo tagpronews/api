@@ -11,10 +11,10 @@
 |
 */
 
-get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
-get('error', 'HomeController@badRequest');
+Route::get('error', 'HomeController@badRequest');
 
-get('transform', 'HomeController@transformExample');
+Route::get('transform', 'HomeController@transformExample');
 
-get('transformItem', 'HomeController@transformItemExample');
+Route::get('transformItem', 'HomeController@transformItemExample');
