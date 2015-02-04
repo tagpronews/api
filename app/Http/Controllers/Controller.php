@@ -87,4 +87,9 @@ abstract class Controller extends BaseController
 
         return response()->json($errors, $code);
     }
+
+    public function code($code = 204)
+    {
+        return response('', $code);
+    }
 }

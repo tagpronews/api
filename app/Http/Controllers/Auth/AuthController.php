@@ -1,5 +1,6 @@
 <?php namespace TagProNews\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
@@ -24,14 +25,16 @@ class AuthController extends Controller
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
-        Token::create(['user_id' => 1, 'token' => $token]);
+        Token::create(['user_id' => Auth::id(), 'token' => $token]);
 
         return response()->json(['data' => ['token' => $token]]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        Token::where(['user_id' => Auth::id(), 'token' => $request->header('Authorization')])->delete();
 
+        return $this->code(204);
     }
 
     public function register()

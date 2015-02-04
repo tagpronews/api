@@ -2,6 +2,8 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
+use TagProNews\Models\Token;
 
 class Authenticate
 {
@@ -33,9 +35,17 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
+        $token = $request->header('Authorization', null);
+        if (empty($token)) {
             return response()->json(['errors' => ['You must be logged in to access this page']], 401);
         }
+
+        $token = Token::where('token', $token)->first();
+        if (is_null($token)) {
+            return response()->json(['errors' => ['You must be logged in to access this page']], 401);
+        }
+
+        Auth::onceUsingId($token->user_id);
 
         return $next($request);
     }
