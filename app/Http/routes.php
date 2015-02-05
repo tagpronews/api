@@ -17,7 +17,7 @@ Route::get('transform', 'HomeController@transformExample');
 Route::get('transformItem', 'HomeController@transformItemExample');
 // examples end
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['middleware' => 'v1'], function () {
 
     Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
         Route::post('login', 'Auth\AuthController@login');

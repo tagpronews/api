@@ -27,6 +27,7 @@ class Kernel extends HttpKernel
         'auth' => 'TagProNews\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
         'guest' => 'TagProNews\Http\Middleware\RedirectIfAuthenticated',
+        'v1' => 'TagProNews\Http\Middleware\Version1'
     ];
 
 }
