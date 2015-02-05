@@ -2,9 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
+use TagProNews\Http\Requests\Auth\RegistrationRequest;
 use TagProNews\Models\Token;
+use TagProNews\Models\User;
 
 /**
  * Created by PhpStorm.
@@ -37,9 +40,20 @@ class AuthController extends Controller
         return $this->code(204);
     }
 
-    public function register()
+    public function register(RegistrationRequest $request)
     {
+        $factory = new \RandomLib\Factory;
+        $generator = $factory->getLowStrengthGenerator();
+        $confirmationCode = $generator->generateString(64);
 
+        $user = new User;
+        $user->username = $request->input('username');
+        $user->password = Hash::make($request->input('password'));
+        $user->email = $request->input('email');
+        $user->confirmation_code = $confirmationCode;
+        $user->save();
+
+        return $this->code(204);
     }
 
     public function resetPassword()
