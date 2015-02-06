@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
+use TagProNews\Http\Requests\Auth\PasswordResetRequest;
 use TagProNews\Http\Requests\Auth\RegistrationConfirmRequest;
 use TagProNews\Http\Requests\Auth\RegistrationRequest;
+use TagProNews\Models\PasswordReset;
 use TagProNews\Models\Token;
 use TagProNews\Models\User;
 
@@ -81,8 +83,24 @@ class AuthController extends Controller
         return $this->code(204);
     }
 
-    public function resetPassword()
+    public function resetPassword(PasswordResetRequest $request)
     {
+        $factory = new \RandomLib\Factory;
+        $generator = $factory->getMediumStrengthGenerator();
+        $token = $generator->generateString(64);
 
+        PasswordReset::create([
+            'email' => $request->input('email'),
+            'token' => $token,
+            'created_at' => date('Y-m-d G:i:s')
+        ]);
+
+        Mail::send('emails.auth.password', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->input('email'))
+                ->subject('Password Reset Request')
+                ->from('auth@tagpronews.com', 'TagPro News');
+        });
+
+        return $this->code(204);
     }
 }

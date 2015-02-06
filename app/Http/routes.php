@@ -24,6 +24,7 @@ Route::group(['middleware' => 'v1'], function () {
         Route::post('register', 'Auth\AuthController@register');
         Route::post('confirm', 'Auth\AuthController@confirm');
         Route::post('resetPassword', 'Auth\AuthController@resetPassword');
+        Route::post('resetPasswordComplete', 'Auth\AuthController@resetPasswordComplete');
     });
 
     Route::group(['middleware' => 'auth'], function () {
