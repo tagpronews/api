@@ -22,6 +22,7 @@ Route::group(['middleware' => 'v1'], function () {
     Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
         Route::post('login', 'Auth\AuthController@login');
         Route::post('register', 'Auth\AuthController@register');
+        Route::post('confirm', 'Auth\AuthController@confirm');
         Route::post('resetPassword', 'Auth\AuthController@resetPassword');
     });
 

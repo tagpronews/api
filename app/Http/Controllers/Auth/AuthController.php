@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
+use TagProNews\Http\Requests\Auth\RegistrationConfirmRequest;
 use TagProNews\Http\Requests\Auth\RegistrationRequest;
 use TagProNews\Models\Token;
 use TagProNews\Models\User;
@@ -51,6 +53,29 @@ class AuthController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->email = $request->input('email');
         $user->confirmation_code = $confirmationCode;
+        $user->save();
+
+        Mail::send('emails.auth.register', ['user' => $user], function ($message) use ($user) {
+            $message->to($user->email, $user->username)
+                ->subject('Your confirmation code')
+                ->from('auth@tagpronews.com', 'TagPro News');
+        });
+
+        return $this->code(204);
+    }
+
+    public function confirm(RegistrationConfirmRequest $request)
+    {
+        $user = User::where([
+            'email' => $request->input('email'),
+            'confirmation_code' => $request->input('token')
+        ])->first();
+
+        if (is_null($user)) {
+            return $this->error('User not found', 404);
+        }
+
+        $user->confirmed = true;
         $user->save();
 
         return $this->code(204);
