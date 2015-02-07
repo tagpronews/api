@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
+use TagProNews\Http\Requests\Auth\PasswordResetCompleteRequest;
 use TagProNews\Http\Requests\Auth\PasswordResetRequest;
 use TagProNews\Http\Requests\Auth\RegistrationConfirmRequest;
 use TagProNews\Http\Requests\Auth\RegistrationRequest;
@@ -89,17 +90,38 @@ class AuthController extends Controller
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
-        PasswordReset::create([
-            'email' => $request->input('email'),
-            'token' => $token,
-            'created_at' => date('Y-m-d G:i:s')
-        ]);
+        $passwordReset = PasswordReset::firstOrNew(['email' => $request->input('email')]);
+        $passwordReset->token = $token;
+        $passwordReset->created_at = date('Y-m-d G:i:s');
+        $passwordReset->save();
 
         Mail::send('emails.auth.password', ['token' => $token], function ($message) use ($request) {
             $message->to($request->input('email'))
                 ->subject('Password Reset Request')
                 ->from('auth@tagpronews.com', 'TagPro News');
         });
+
+        return $this->code(204);
+    }
+
+    public function resetPasswordComplete(PasswordResetCompleteRequest $request)
+    {
+        $password = PasswordReset::where([
+            'email' => $request->input('email'),
+            'token' => $request->input('token')
+        ])->first();
+
+        if (is_null($password)) {
+            return $this->error('Token not found', 404);
+        }
+
+        $user = User::where(['email' => $request->input('email')])->first();
+        if (is_null($user)) {
+            return $this->error('User not found', 404);
+        }
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
 
         return $this->code(204);
     }
