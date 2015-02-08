@@ -33,7 +33,7 @@ class AuthController extends Controller
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
-        Token::create(['user_id' => Auth::id(), 'token' => $token]);
+        Auth::user()->token()->create(['token' => $token]);
 
         return response()->json(['data' => ['token' => $token]]);
     }

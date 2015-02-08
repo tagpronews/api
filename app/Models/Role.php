@@ -2,13 +2,24 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Created by PhpStorm.
- * User: steve
- * Date: 31.01.15
- * Time: 23:47
- */
 class Role extends Model
 {
+
     protected $table = 'roles';
+    public $timestamps = true;
+
+    public function permissions()
+    {
+        return $this->hasMany('TagProNews\Models\Permission');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('TagProNews\Models\Group');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('TagProNews\Models\User');
+    }
 }
