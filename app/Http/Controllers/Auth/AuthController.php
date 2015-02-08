@@ -26,7 +26,11 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (!Auth::once($request->all())) {
-            return response()->json(['errors' => ['Invalid login credentials']], 401);
+            return $this->error('Invalid login credentials', 401);
+        }
+
+        if (!Auth::user()->confirmed) {
+            return $this->error('User not confirmed', 401);
         }
 
         $factory = new \RandomLib\Factory;
