@@ -29,5 +29,9 @@ Route::group(['middleware' => 'v1'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('auth/logout', 'Auth\AuthController@logout');
+
+        Route::group(['prefix' => 'admin'], function () {
+            Route::resource('groups', 'Permissions\GroupController');
+        });
     });
 });
