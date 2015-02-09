@@ -13,7 +13,7 @@ use TagProNews\Transformers\BasicTransformer;
  */
 class RoleTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['inherits_from'];
+    protected $defaultIncludes = ['inherits_from', 'permissions'];
 
     /**
      * @param Role $role
@@ -37,5 +37,12 @@ class RoleTransformer extends TransformerAbstract
         }
 
         return $this->item(['name' => $name->name], new BasicTransformer);
+    }
+
+    public function includePermissions(Role $role)
+    {
+        $permissions = $role->permissions;
+
+        return $this->collection($permissions, new PermissionTransformer);
     }
 }
