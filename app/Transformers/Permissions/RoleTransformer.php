@@ -3,6 +3,7 @@
 use League\Fractal\TransformerAbstract;
 use TagProNews\Models\Group;
 use TagProNews\Models\Role;
+use TagProNews\Transformers\BasicTransformer;
 
 /**
  * Created by PhpStorm.
@@ -12,6 +13,8 @@ use TagProNews\Models\Role;
  */
 class RoleTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['inherits_from'];
+
     /**
      * @param Role $role
      * @return array
@@ -23,5 +26,16 @@ class RoleTransformer extends TransformerAbstract
             'created' => $role->created_at,
             'updated' => $role->updated_at
         ];
+    }
+
+    public function includeInheritsFrom(Role $role)
+    {
+        $name = $role->inherits()->first();
+
+        if (is_null($name)) {
+            return $this->item(['name' => null], new BasicTransformer);
+        }
+
+        return $this->item(['name' => $name->name], new BasicTransformer);
     }
 }

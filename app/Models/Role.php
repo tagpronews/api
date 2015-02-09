@@ -18,6 +18,11 @@ class Role extends Model
         return $this->belongsTo('TagProNews\Models\Group');
     }
 
+    public function inherits()
+    {
+        return $this->belongsTo('TagProNews\Models\Role', 'inherits_from');
+    }
+
     public function users()
     {
         return $this->hasMany('TagProNews\Models\User');
