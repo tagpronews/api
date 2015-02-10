@@ -4,6 +4,7 @@ use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use TagProNews\Http\Requests\Permissions\GroupListRequest;
 use TagProNews\Models\Group;
 
 class GroupController extends Controller
@@ -14,7 +15,7 @@ class GroupController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(GroupListRequest $request)
     {
         $groups = Group::all();
 
