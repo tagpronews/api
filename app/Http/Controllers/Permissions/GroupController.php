@@ -45,20 +45,15 @@ class GroupController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function show($id)
+    public function show(GroupListRequest $request, $id)
     {
-        //
-    }
+        $group = Group::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        if (is_null($group)) {
+            return $this->error('Group not found', 404);
+        }
+
+        return $this->transformItem('Permissions\GroupTransformer', $group);
     }
 
     /**
