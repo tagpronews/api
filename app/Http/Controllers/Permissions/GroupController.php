@@ -4,6 +4,7 @@ use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use TagProNews\Http\Requests\Permissions\GroupCreateRequest;
 use TagProNews\Http\Requests\Permissions\GroupListRequest;
 use TagProNews\Models\Group;
 
@@ -13,6 +14,7 @@ class GroupController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param GroupListRequest $request
      * @return Response
      */
     public function index(GroupListRequest $request)
@@ -23,23 +25,18 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
+     * @param GroupCreateRequest $request
      * @return Response
      */
-    public function store()
+    public function store(GroupCreateRequest $request)
     {
-        //
+        $group = new Group;
+        $group->name = $request->input('name');
+        $group->save();
+
+        return $this->code(204);
     }
 
     /**

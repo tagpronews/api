@@ -31,6 +31,10 @@ Route::group(['middleware' => 'v1'], function () {
         Route::get('auth/logout', 'Auth\AuthController@logout');
 
         Route::group(['prefix' => 'admin'], function () {
+            Route::group(['prefix'=>'groups'], function(){
+                Route::get('/', 'Permissions\GroupController@index');
+                Route::post('/', 'Permissions\GroupController@store');
+            });
             Route::resource('groups', 'Permissions\GroupController');
         });
     });
