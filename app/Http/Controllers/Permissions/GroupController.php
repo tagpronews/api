@@ -5,9 +5,14 @@ use TagProNews\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use TagProNews\Http\Requests\Permissions\GroupCreateRequest;
+use TagProNews\Http\Requests\Permissions\GroupDeleteRequest;
 use TagProNews\Http\Requests\Permissions\GroupListRequest;
 use TagProNews\Models\Group;
 
+/**
+ * Class GroupController
+ * @package TagProNews\Http\Controllers\Permissions
+ */
 class GroupController extends Controller
 {
 
@@ -42,6 +47,7 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param GroupListRequest $request
      * @param  int $id
      * @return Response
      */
@@ -70,12 +76,21 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param GroupDeleteRequest $request
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(GroupDeleteRequest $request, $id)
     {
-        //
+        $group = Group::find($id);
+
+        if (is_null($group)) {
+            return $this->error('Group not found', 404);
+        }
+
+        $group->delete();
+
+        return $this->code(204);
     }
 
 }
