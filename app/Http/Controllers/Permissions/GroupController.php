@@ -1,12 +1,13 @@
 <?php namespace TagProNews\Http\Controllers\Permissions;
 
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Response;
 use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use TagProNews\Http\Requests\Permissions\GroupCreateRequest;
 use TagProNews\Http\Requests\Permissions\GroupDeleteRequest;
 use TagProNews\Http\Requests\Permissions\GroupListRequest;
+use TagProNews\Http\Requests\Permissions\GroupUpdateRequest;
 use TagProNews\Models\Group;
 
 /**
@@ -65,12 +66,27 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param GroupUpdateRequest $request
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(GroupUpdateRequest $request, $id)
     {
-        //
+        $group = Group::find($id);
+
+        if (is_null($group)) {
+            return $this->error('Group not found', 404);
+        }
+
+        $group->name = $request->input('name');
+
+        try {
+            $group->save();
+        } catch (QueryException $e) {
+            return $this->error('Group already exists', 409);
+        }
+
+        return $this->code(204);
     }
 
     /**
