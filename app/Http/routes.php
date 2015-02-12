@@ -34,6 +34,9 @@ Route::group(['middleware' => 'v1'], function () {
             Route::resource('groups', 'Permissions\GroupController',
                 ['except' => ['create', 'edit']]
             );
+            Route::resource('groups.roles', 'Permissions\RoleController',
+                ['except' => ['create', 'edit']]
+            );
         });
     });
 });

@@ -30,13 +30,13 @@ class RoleTransformer extends TransformerAbstract
 
     public function includeInheritsFrom(Role $role)
     {
-        $name = $role->inherits()->first();
+        $parent = $role->inherits()->first();
 
-        if (is_null($name)) {
+        if (is_null($parent)) {
             return $this->item(['name' => null], new BasicTransformer);
         }
 
-        return $this->item(['name' => $name->name], new BasicTransformer);
+        return $this->item(['name' => $parent->name], new BasicTransformer);
     }
 
     public function includePermissions(Role $role)
