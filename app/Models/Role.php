@@ -6,6 +6,7 @@ class Role extends Model
 {
 
     protected $table = 'roles';
+    public $guarded = [];
     public $timestamps = true;
 
     public function permissions()
