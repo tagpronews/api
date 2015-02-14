@@ -1,6 +1,8 @@
 <?php namespace TagProNews\Http;
 
+use Exception;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Kernel extends HttpKernel
 {
@@ -29,5 +31,10 @@ class Kernel extends HttpKernel
         'guest' => 'TagProNews\Http\Middleware\RedirectIfAuthenticated',
         'v1' => 'TagProNews\Http\Middleware\Version1'
     ];
+
+    protected function renderException($request, Exception $e)
+    {
+        return response()->json(['errors' => ['Not found']])->setStatusCode(404);
+    }
 
 }

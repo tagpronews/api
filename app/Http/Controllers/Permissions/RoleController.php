@@ -22,12 +22,6 @@ class RoleController extends Controller
      */
     public function index(RoleListRequest $request, $group)
     {
-        $group = Group::find($group);
-
-        if (is_null($group)) {
-            return $this->error('Group not found', 404);
-        }
-
         $roles = $group->roles()->get();
 
         return $this->setMeta(['count' => count($roles)])
@@ -43,12 +37,6 @@ class RoleController extends Controller
      */
     public function store(RoleCreateRequest $request, $group)
     {
-        $group = Group::find($group);
-
-        if (is_null($group)) {
-            return $this->error('Group not found', 404);
-        }
-
         try {
             $group->roles()->create([
                 'name' => $request->input('name'),

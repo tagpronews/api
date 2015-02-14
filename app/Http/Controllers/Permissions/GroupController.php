@@ -49,17 +49,11 @@ class GroupController extends Controller
      * Display the specified resource.
      *
      * @param GroupListRequest $request
-     * @param  int $id
+     * @param $group
      * @return Response
      */
-    public function show(GroupListRequest $request, $id)
+    public function show(GroupListRequest $request, $group)
     {
-        $group = Group::find($id);
-
-        if (is_null($group)) {
-            return $this->error('Group not found', 404);
-        }
-
         return $this->transformItem('Permissions\GroupTransformer', $group);
     }
 
@@ -67,17 +61,11 @@ class GroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param GroupUpdateRequest $request
-     * @param  int $id
+     * @param $group
      * @return Response
      */
-    public function update(GroupUpdateRequest $request, $id)
+    public function update(GroupUpdateRequest $request, $group)
     {
-        $group = Group::find($id);
-
-        if (is_null($group)) {
-            return $this->error('Group not found', 404);
-        }
-
         $group->name = $request->input('name');
 
         try {
@@ -93,17 +81,11 @@ class GroupController extends Controller
      * Remove the specified resource from storage.
      *
      * @param GroupDeleteRequest $request
-     * @param  int $id
+     * @param $group
      * @return Response
      */
-    public function destroy(GroupDeleteRequest $request, $id)
+    public function destroy(GroupDeleteRequest $request, $group)
     {
-        $group = Group::find($id);
-
-        if (is_null($group)) {
-            return $this->error('Group not found', 404);
-        }
-
         $group->delete();
 
         return $this->code(204);
