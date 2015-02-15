@@ -8,6 +8,7 @@ use TagProNews\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use TagProNews\Http\Requests\Permissions\RoleCreateRequest;
 use TagProNews\Http\Requests\Permissions\RoleListRequest;
+use TagProNews\Http\Requests\Permissions\RoleUpdateRequest;
 use TagProNews\Models\Group;
 use TagProNews\Models\Role;
 
@@ -52,23 +53,32 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param RoleListRequest $request
+     * @param $group
+     * @param $role
      * @return Response
      */
-    public function show($id)
+    public function show(RoleListRequest $request, $group, $role)
     {
-        //
+        return $this->transformItem('Permissions\RoleTransformer', $role);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param RoleUpdateRequest $request
+     * @param $group
+     * @param $role
      * @return Response
      */
-    public function update($id)
+    public function update(RoleUpdateRequest $request, $group, $role)
     {
-        //
+        $role->name = $request->input('name');
+        $role->parent = $request->input('parent', $role->inherits_from);
+        $role->group_id = $request->input('group', $group->id);
+        $role->save();
+
+        return $this->code(204);
     }
 
     /**
