@@ -4,9 +4,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Response;
 use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use TagProNews\Http\Requests\Permissions\RoleCreateRequest;
+use TagProNews\Http\Requests\Permissions\RoleDeleteRequest;
 use TagProNews\Http\Requests\Permissions\RoleListRequest;
 use TagProNews\Http\Requests\Permissions\RoleUpdateRequest;
 use TagProNews\Models\Group;
@@ -21,7 +20,7 @@ class RoleController extends Controller
      * @param RoleListRequest $request
      * @return Response
      */
-    public function index(RoleListRequest $request, $group)
+    public function index(RoleListRequest $request, Group $group)
     {
         $roles = $group->roles()->get();
 
@@ -36,7 +35,7 @@ class RoleController extends Controller
      * @param $group
      * @return Response
      */
-    public function store(RoleCreateRequest $request, $group)
+    public function store(RoleCreateRequest $request, Group $group)
     {
         try {
             $group->roles()->create([
@@ -58,7 +57,7 @@ class RoleController extends Controller
      * @param $role
      * @return Response
      */
-    public function show(RoleListRequest $request, $group, $role)
+    public function show(RoleListRequest $request, Group $group, Role $role)
     {
         return $this->transformItem('Permissions\RoleTransformer', $role);
     }
@@ -71,7 +70,7 @@ class RoleController extends Controller
      * @param $role
      * @return Response
      */
-    public function update(RoleUpdateRequest $request, $group, $role)
+    public function update(RoleUpdateRequest $request, Group $group, Role $role)
     {
         $role->name = $request->input('name');
         $role->parent = $request->input('parent', $role->inherits_from);
@@ -84,12 +83,16 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param RoleDeleteRequest $request
+     * @param $group
+     * @param $role
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(RoleDeleteRequest $request, Group $group, Role $role)
     {
-        //
+        $role->delete();
+
+        return $this->code(204);
     }
 
 }
