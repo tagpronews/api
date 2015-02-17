@@ -18,6 +18,16 @@ class GroupController extends Controller
 {
 
     /**
+     * Set up middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('v1');
+
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param GroupListRequest $request
@@ -52,7 +62,7 @@ class GroupController extends Controller
      * @param $group
      * @return Response
      */
-    public function show(GroupListRequest $request, $group)
+    public function show(GroupListRequest $request, Group $group)
     {
         return $this->transformItem('Permissions\GroupTransformer', $group);
     }
@@ -64,7 +74,7 @@ class GroupController extends Controller
      * @param $group
      * @return Response
      */
-    public function update(GroupUpdateRequest $request, $group)
+    public function update(GroupUpdateRequest $request, Group $group)
     {
         $group->name = $request->input('name');
 
@@ -84,7 +94,7 @@ class GroupController extends Controller
      * @param $group
      * @return Response
      */
-    public function destroy(GroupDeleteRequest $request, $group)
+    public function destroy(GroupDeleteRequest $request, Group $group)
     {
         $group->delete();
 

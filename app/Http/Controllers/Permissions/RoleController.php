@@ -15,9 +15,20 @@ class RoleController extends Controller
 {
 
     /**
+     * Set up middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('v1');
+
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param RoleListRequest $request
+     * @param Group $group
      * @return Response
      */
     public function index(RoleListRequest $request, Group $group)

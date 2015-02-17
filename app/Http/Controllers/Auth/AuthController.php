@@ -23,6 +23,22 @@ use TagProNews\Models\User;
 class AuthController extends Controller
 {
 
+    /**
+     * Set up middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('v1');
+
+        $this->middleware('auth', [
+            'only' => ['logout']
+        ]);
+
+        $this->middleware('guest', [
+            'except' => ['logout']
+        ]);
+    }
+
     public function login(LoginRequest $request)
     {
         if (!Auth::once($request->all())) {
