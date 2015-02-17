@@ -2,7 +2,6 @@
 
 use League\Fractal\TransformerAbstract;
 use TagProNews\Models\Permission;
-use TagProNews\Models\Role;
 
 /**
  * Created by PhpStorm.
@@ -14,7 +13,7 @@ class PermissionTransformer extends TransformerAbstract
 {
 
     /**
-     * @param Role $role
+     * @param Permission $permission
      * @return array
      */
     public function transform(Permission $permission)
