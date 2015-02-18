@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Response;
 use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
+use TagProNews\Http\Requests\Permissions\PermissionCreateRequest;
 use TagProNews\Http\Requests\Permissions\PermissionListRequest;
 use TagProNews\Models\Permission;
+use TagProNews\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -35,10 +37,24 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param PermissionCreateRequest $request
      * @return Response
      */
-    public function store()
+    public function store(PermissionCreateRequest $request)
     {
+        $permission = new Permission;
+        $permission->name = $request->input('name');
+        $permission->display_name = $request->input('display_name');
+
+        if ($request->input('role')) {
+            Role::find($request->input('role'))
+                ->permissions()
+                ->save($permission);
+        } else {
+            $permission->save();
+        }
+
+        return $this->code(204);
     }
 
     /**
