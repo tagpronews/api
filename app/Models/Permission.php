@@ -10,7 +10,7 @@ class Permission extends Model
 
     public function role()
     {
-        return $this->belongsToMany('TagProNews\Models\Role');
+        return $this->belongsTo('TagProNews\Models\Role');
     }
 
 }

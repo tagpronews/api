@@ -41,8 +41,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function permissions()
     {
-        return $this->manyThroughMany('TagProNews\Models\Permission', 'TagProNews\Models\PermissionRole', 'role_id',
-            'id', 'permission_id');
+        return $this->hasManyThrough('TagProNews\Models\Permission', 'TagProNews\Models\Role');
     }
 
     public function groups()

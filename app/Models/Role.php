@@ -11,7 +11,7 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('TagProNews\Models\Permission');
+        return $this->hasMany('TagProNews\Models\Permission');
     }
 
     public function group()

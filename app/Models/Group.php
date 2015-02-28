@@ -18,4 +18,9 @@ class Group extends Model
         return $this->hasManyThrough('TagProNews\Models\User', 'Role');
     }
 
+    public function permissions()
+    {
+        return $this->hasManyThrough('TagProNews\Models\Permission', 'Role');
+    }
+
 }

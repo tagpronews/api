@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->model('groups', 'TagProNews\Models\Group');
         $router->model('roles', 'TagProNews\Models\Role');
+        $router->model('permissions', 'TagProNews\Models\Permission');
     }
 
     /**

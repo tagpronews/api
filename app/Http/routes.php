@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('groups.roles', 'RoleController',
             ['except' => ['create', 'edit']]
         );
-        Route::resource('permissions', 'PermissionController',
+        Route::resource('groups.roles.permissions', 'PermissionController',
             ['except' => ['create', 'edit']]
         );
     });

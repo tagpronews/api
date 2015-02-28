@@ -11,6 +11,7 @@ class CreatePermissionsTable extends Migration {
 			$table->increments('id');
 			$table->string('name')->unique();
 			$table->string('display_name');
+            $table->integer('role_id')->unsigned();
 			$table->timestamps();
 		});
 	}

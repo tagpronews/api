@@ -5,6 +5,7 @@ use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Permissions\PermissionCreateRequest;
 use TagProNews\Http\Requests\Permissions\PermissionListRequest;
+use TagProNews\Models\Group;
 use TagProNews\Models\Permission;
 use TagProNews\Models\Role;
 
@@ -27,9 +28,9 @@ class PermissionController extends Controller
      * @param PermissionListRequest $request
      * @return Response
      */
-    public function index(PermissionListRequest $request)
+    public function index(PermissionListRequest $request, Group $group, Role $role)
     {
-        $permissions = Permission::all();
+        $permissions = $role->permissions();
 
         return $this->transform('Permissions\PermissionTransformer', $permissions);
     }
@@ -40,19 +41,13 @@ class PermissionController extends Controller
      * @param PermissionCreateRequest $request
      * @return Response
      */
-    public function store(PermissionCreateRequest $request)
+    public function store(PermissionCreateRequest $request, Group $group, Role $role)
     {
         $permission = new Permission;
         $permission->name = $request->input('name');
         $permission->display_name = $request->input('display_name');
 
-        if ($request->input('role')) {
-            Role::find($request->input('role'))
-                ->permissions()
-                ->save($permission);
-        } else {
-            $permission->save();
-        }
+        $role->permissions()->save($permission);
 
         return $this->code(204);
     }
