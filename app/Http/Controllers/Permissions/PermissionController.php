@@ -57,8 +57,9 @@ class PermissionController extends Controller
      *
      * @return Response
      */
-    public function show()
+    public function show(Group $group, Role $role, Permission $permission)
     {
+        return $this->transformItem('Permissions\PermissionTransformer', $permission);
     }
 
     /**
