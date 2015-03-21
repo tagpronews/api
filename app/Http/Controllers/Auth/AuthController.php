@@ -53,14 +53,7 @@ class AuthController extends Controller
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
-        $currentToken = Auth::user()->token()->first();
-
-        if (is_null($currentToken)) {
-            Auth::user()->token()->create(['token' => $token]);
-        } else {
-            $currentToken->token = $token;
-            $currentToken->save();
-        }
+        Auth::user()->token()->create(['token' => $token]);
 
         return response()->json(['data' => ['token' => $token]]);
     }
