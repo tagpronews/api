@@ -38,7 +38,7 @@ abstract class Controller extends BaseController
      */
     public function transform($class, $data)
     {
-        $transformer = "TagProNews\\Transformers\\" . $class;
+        $transformer = $this->getTransformer("TagProNews\\Transformers\\" . $class);
         $fractal = new Manager;
         $resource = new Collection($data, new $transformer);
 
@@ -55,7 +55,7 @@ abstract class Controller extends BaseController
      */
     public function transformItem($class, $item)
     {
-        $transformer = "TagProNews\\Transformers\\" . $class;
+        $transformer = $this->getTransformer("TagProNews\\Transformers\\" . $class);
         $fractal = new Manager;
         $resource = new Item($item, new $transformer);
 
@@ -91,5 +91,10 @@ abstract class Controller extends BaseController
     public function code($code = 204)
     {
         return response('', $code);
+    }
+
+    private function getTransformer($class)
+    {
+        return app()->make($class);
     }
 }

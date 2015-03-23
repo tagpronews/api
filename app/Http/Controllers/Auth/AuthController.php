@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use RandomLib\Factory;
 use TagProNews\Http\Controllers\Controller;
 use TagProNews\Http\Requests\Auth\LoginRequest;
 use TagProNews\Http\Requests\Auth\PasswordResetCompleteRequest;
@@ -49,7 +50,7 @@ class AuthController extends Controller
             return $this->error('User not confirmed', 401);
         }
 
-        $factory = new \RandomLib\Factory;
+        $factory = new Factory;
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
@@ -67,7 +68,7 @@ class AuthController extends Controller
 
     public function register(RegistrationRequest $request)
     {
-        $factory = new \RandomLib\Factory;
+        $factory = new Factory;
         $generator = $factory->getLowStrengthGenerator();
         $confirmationCode = $generator->generateString(64);
 
@@ -106,7 +107,7 @@ class AuthController extends Controller
 
     public function resetPassword(PasswordResetRequest $request)
     {
-        $factory = new \RandomLib\Factory;
+        $factory = new Factory;
         $generator = $factory->getMediumStrengthGenerator();
         $token = $generator->generateString(64);
 
