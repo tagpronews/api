@@ -42,7 +42,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (!Auth::once($request->all())) {
+        if (!Auth::attempt($request->all())) {
             return $this->error('Invalid login credentials', 401);
         }
 
@@ -50,18 +50,19 @@ class AuthController extends Controller
             return $this->error('User not confirmed', 401);
         }
 
-        $factory = new Factory;
-        $generator = $factory->getMediumStrengthGenerator();
-        $token = $generator->generateString(64);
+//        $factory = new Factory;
+//        $generator = $factory->getMediumStrengthGenerator();
+//        $token = $generator->generateString(64);
 
-        Auth::user()->token()->create(['token' => $token]);
+//        Auth::user()->token()->create(['token' => $token]);
 
-        return response()->json(['data' => ['token' => $token]]);
+        return response('', 204);//->json(['data' => ['token' => $token]]);
     }
 
     public function logout(Request $request)
     {
-        Token::where(['user_id' => Auth::id(), 'token' => $request->header('Authorization')])->delete();
+//        Token::where(['user_id' => Auth::id(), 'token' => $request->header('Authorization')])->delete();
+        Auth::logout();
 
         return $this->code(204);
     }
