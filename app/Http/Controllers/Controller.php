@@ -83,7 +83,7 @@ abstract class Controller extends BaseController
      */
     public function error($errors, $code = 500)
     {
-        $errors = ['errors' => (array)$errors];
+        $errors = ['errors' => (array)$errors, 'meta' => ['code' => $code]];
 
         return response()->json($errors, $code);
     }
