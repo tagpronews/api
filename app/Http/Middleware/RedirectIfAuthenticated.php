@@ -25,20 +25,21 @@ class RedirectIfAuthenticated
         $this->auth = $auth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
-        if ($this->auth->check()) {
-            return response()->json(['errors' => ['You must be logged out to access this page']], 403);
-        }
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return mixed
+	 */
+	public function handle($request, Closure $next)
+	{
+		if ($this->auth->check())
+		{
+			return new RedirectResponse(url('/home'));
+		}
 
-        return $next($request);
-    }
+		return $next($request);
+	}
 
 }

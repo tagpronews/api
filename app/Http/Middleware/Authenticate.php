@@ -26,28 +26,28 @@ class Authenticate
         $this->auth = $auth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
-        $token = $request->header('Authorization', null);
-        if (empty($token)) {
-            return response()->json(['errors' => ['You must be logged in to access this page']], 401);
-        }
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return mixed
+	 */
+	public function handle($request, Closure $next)
+	{
+		if ($this->auth->guest())
+		{
+			if ($request->ajax())
+			{
+				return response('Unauthorized.', 401);
+			}
+			else
+			{
+				return redirect()->guest('auth/login');
+			}
+		}
 
-        $token = Token::where('token', $token)->first();
-        if (is_null($token)) {
-            return response()->json(['errors' => ['You must be logged in to access this page']], 401);
-        }
-
-        Auth::onceUsingId($token->user_id);
-
-        return $next($request);
-    }
+		return $next($request);
+	}
 
 }
