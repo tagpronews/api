@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email', 255)->unique();
 			$table->string('password', 255);
 			$table->string('avatar', 255);
-			$table->string('remember_token', 100)->nullable();
+            $table->rememberToken();
 			$table->string('confirmation_code', 64);
 			$table->boolean('confirmed')->default(false);
 			$table->timestamps();
