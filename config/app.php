@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://tagpronews.com/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', 'fbKDOTjAx5YfXRoYpYBl69zOFkeHtMYJ'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
