@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/', function(){
+    return 'Hi, welcome to TagProNews!';
+});
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
