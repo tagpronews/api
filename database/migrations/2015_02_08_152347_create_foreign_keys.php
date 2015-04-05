@@ -42,11 +42,6 @@ class CreateForeignKeys extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
         });
-        Schema::table('tokens', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-        });
     }
 
     public function down()
@@ -71,9 +66,6 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('permission_role', function (Blueprint $table) {
             $table->dropForeign('permission_role_role_id_foreign');
-        });
-        Schema::table('tokens', function (Blueprint $table) {
-            $table->dropForeign('tokens_user_id_foreign');
         });
     }
 }
