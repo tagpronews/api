@@ -17,7 +17,6 @@ class CreatePlayersTable extends Migration {
 			// TODO: Maybe ask for and record player's preferred server(s)
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->default(0);
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('name')->default('');
 			$table->string('profile')->default('');
 			$table->timestamps();

@@ -17,9 +17,7 @@ class CreateStatisticsTable extends Migration {
 			$table->increments('id');
 			$table->integer('player_id')->unsigned()->default(0);
 			// Cascading on delete may not be desirable, since it may affect game results
-			$table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
 			$table->integer('period_id')->unsigned()->default(0);
-			$table->foreign('period_id')->references('id')->on('periods')->onDelete('cascade');
 			$table->decimal('minutes')->unsigned()->default(0);
 			$table->integer('plus_minus')->default(0);
 			$table->integer('score')->default(0);

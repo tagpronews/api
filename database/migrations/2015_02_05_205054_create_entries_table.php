@@ -16,9 +16,7 @@ class CreateEntriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('division_id')->unsigned()->default(0);
-			$table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
 			$table->integer('team_id')->unsigned()->default(0);
-			$table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

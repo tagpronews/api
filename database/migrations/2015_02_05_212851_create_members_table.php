@@ -17,9 +17,7 @@ class CreateMembersTable extends Migration {
 			//TODO: Maybe specify a position (O, D, O/D, D/O, Both)
 			$table->increments('id');
 			$table->integer('player_id')->unsigned()->default(0);
-			$table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
 			$table->integer('entry_id')->unsigned()->default(0);
-			$table->foreign('entry_id')->references('id')->on('entries')->onDelete('cascade');
 			$table->boolean('entry_captain')->default(false);
 			$table->timestamps();
 		});

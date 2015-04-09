@@ -16,7 +16,6 @@ class CreateLeaguesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('region_id')->unsigned()->default(0);
-			$table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
 			$table->string('name')->default('');
 			$table->timestamps();
 		});

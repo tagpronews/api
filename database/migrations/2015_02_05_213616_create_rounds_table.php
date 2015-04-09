@@ -16,7 +16,6 @@ class CreateRoundsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('season_id')->unsigned()->default(0);
-			$table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');
 			$table->date('start_date');
 			$table->date('end_date');
 			$table->timestamps();

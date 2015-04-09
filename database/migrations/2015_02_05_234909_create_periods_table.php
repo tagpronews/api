@@ -17,7 +17,6 @@ class CreatePeriodsTable extends Migration {
 			// TODO: Maybe record server played on
 			$table->increments('id');
 			$table->integer('game_id')->unsigned()->default(0);
-			$table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
 			$table->string('video')->default('');
 			$table->timestamps();
 		});

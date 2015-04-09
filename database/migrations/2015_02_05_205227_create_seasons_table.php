@@ -16,7 +16,6 @@ class CreateSeasonsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('league_id')->unsigned()->default(0);
-			$table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
