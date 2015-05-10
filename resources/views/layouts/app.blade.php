@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
     <style>
-        body > .content {
+        body > .content, body > .container-fluid {
             padding-top : 70px;
         }
     </style>
