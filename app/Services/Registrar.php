@@ -1,6 +1,6 @@
 <?php namespace TagProNews\Services;
 
-use TagProNews\User;
+use TagProNews\Models\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

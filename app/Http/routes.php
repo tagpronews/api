@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function(){
-    return 'Hi, welcome to TagProNews!';
-});
+Route::get('/', 'HomeController@index');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
