@@ -17,6 +17,13 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
+    <style>
+        body > .content {
+            padding-top : 70px;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -55,9 +62,7 @@
     </div>
 </nav>
 
-<div class="content" style="padding-top: 70px;">
-    @yield('content')
-</div>
+@yield('content')
 
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
