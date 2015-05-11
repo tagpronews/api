@@ -1,9 +1,9 @@
 .btn-header {
-    border-radius: 0;
-    color: #227fb7;
-    font-weight: 700;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom: 3px solid #227fb7;
-    border-left-style: none;
+    border-radius      : 0;
+    color              : #227fb7;
+    font-weight        : 700;
+    border-top-style   : none;
+    border-right-style : none;
+    border-bottom      : 3px solid #227fb7;
+    border-left-style  : none;
 }
