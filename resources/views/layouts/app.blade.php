@@ -44,7 +44,7 @@
                 <li><a href="http://tagpro.gg" target="_blank">Play Now</a></li>
                 <li><a href="{{ url('/news') }}">News</a></li>
                 <li><a href="{{ url('/leagues') }}">Leagues</a></li>
-                <li><a>|</a></li>
+                <li class="break"></li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
