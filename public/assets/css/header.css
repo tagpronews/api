@@ -1,3 +1,29 @@
+.navbar-xs {
+    min-height : 40px;
+    height     : 40px;
+}
+
+.navbar-xs .navbar-brand {
+    padding     : 0 18px;
+    font-size   : 20px;
+    line-height : 40px;
+}
+
+.navbar-xs .navbar-nav > li > a {
+    padding-top    : 0;
+    padding-bottom : 0;
+    line-height    : 40px;
+}
+
+li.break:after {
+    content : '|';
+}
+
+li.break {
+    padding : 10px 0;
+    color   : #9d9d9d;
+}
+
 .btn-header {
     border-radius      : 0;
     color              : #227fb7;
@@ -6,13 +32,4 @@
     border-right-style : none;
     border-bottom      : 3px solid #227fb7;
     border-left-style  : none;
-}
-
-li.break:after {
-    content : '|';
-}
-
-li.break {
-    padding : 15px 0;
-    color   : #9d9d9d;
 }
