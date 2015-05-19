@@ -20,11 +20,6 @@
 
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
-    <style>
-        body > .content, body > .container-fluid {
-            padding-top : 60px;
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-xs navbar-inverse navbar-fixed-top">
@@ -37,7 +32,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">TagPro News</a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img alt="TagPro News" src="{{ asset('assets/images/header_logo.png') }}">
+            </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
