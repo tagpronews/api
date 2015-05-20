@@ -1,0 +1,10 @@
+.home-image > img {
+    padding : 25px;
+}
+
+/*
+ * TODO: move all header bar (red background stuff) to it's own class namespace
+ */
+h4 {
+    color : white;
+}

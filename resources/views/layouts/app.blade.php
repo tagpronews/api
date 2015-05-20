@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
 </head>
 <body>
 <nav class="navbar navbar-xs navbar-inverse navbar-fixed-top">
