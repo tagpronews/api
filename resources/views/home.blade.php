@@ -16,7 +16,7 @@
     <br>
 
     <div class="row">
-        <div class="btn-header-group" style="width:300px;margin: 0 auto;">
+        <div class="btn-header-group">
             <a href="{{ url('/leagues') }}" class="btn btn-default btn-header pull-left">
                 LEAGUE TABLE
             </a>
