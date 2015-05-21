@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
 </head>
 <body>
-<nav class="navbar navbar-xs navbar-inverse">
+<nav class="navbar navbar-xs navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"

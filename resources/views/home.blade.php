@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content" style="background-color:#DF3442;padding-bottom: 100px;">
+<div class="container-fluid" style="background-color:#DF3442;padding-bottom: 100px;">
     <div class="row home-image">
+        <div class="clearfix"></div>
         <img class="center-block" alt="Logo" src="{{ asset('assets/images/home_logo.png') }}">
         <img class="center-block" alt="Pop the balls" src="{{ asset('assets/images/home_pop.png') }}">
     </div>
