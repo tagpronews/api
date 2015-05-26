@@ -56,6 +56,20 @@
                         We will read and consider every comment made to us, however we want to keep it focused and simple so not everything will be integrated.
                         If you would also want to help out in any practical way, let us know.
                     </p>
+
+                    <form class="" role="form" method="POST" action="{{ url('/') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email (optional)">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" name="feedback" placeholder="Your Message" rows="5" style="resize:vertical;"></textarea>
+                        </div>
+
+                        <button class="btn btn-primary">SEND</button>
+                    </form>
                 </div>
             </div>
         </div>
