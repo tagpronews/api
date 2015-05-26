@@ -26,4 +26,37 @@
         </div>
     </div>
 </div>
+
+<div class="container" style="margin-top: -42px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>News</h2>
+                </div>
+                <div class="panel-body">
+                    <img src="//placekitten.com/553/200" />
+                    <p>text goes here</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Alpha Feedback & Suggestions</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Welcome to the Alpha Launch of the TagPro News site!
+                        We're very excited to see how far this can go.
+                        We need your feedback and suggestions to make sure we continue to head in the right direction.
+                        We will read and consider every comment made to us, however we want to keep it focused and simple so not everything will be integrated.
+                        If you would also want to help out in any practical way, let us know.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
