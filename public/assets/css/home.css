@@ -8,3 +8,29 @@
 h4 {
     color : white;
 }
+
+.panel-main {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+}
+
+.panel-main > .panel-heading {
+    background-color: #DFDFDF;
+    padding: 20px 25px;
+}
+
+.panel-main > .panel-heading > span {
+    font-weight: 700;
+    font-size: 2em;
+    color:#E1253E;
+}
+
+.panel-main > .panel-body {
+    padding: 15px 0;
+}
+
+
+.panel-main > .panel-body > p {
+    font-size: 1.2em;
+}

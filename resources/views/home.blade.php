@@ -16,35 +16,37 @@
     <br>
 
     <div class="row">
-        <div class="btn-header-group">
-            <a href="{{ url('/leagues') }}" class="btn btn-default btn-header pull-left">
+        <div class="col-sm-6">
+            <a href="{{ url('/leagues') }}" class="btn btn-default btn-header pull-right">
                 LEAGUE TABLE
             </a>
-            <a href="{{ url('/players')  }}" class="btn btn-default btn-header pull-right">
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ url('/players')  }}" class="btn btn-default btn-header">
                 PLAYER RANKING
             </a>
         </div>
     </div>
 </div>
 
-<div class="container" style="margin-top: -42px;">
+<div class="container" style="margin-top: -40px;">
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-default">
+            <div class="panel panel-main">
                 <div class="panel-heading">
-                    <h2>News</h2>
+                    <span>News</span>
                 </div>
                 <div class="panel-body">
-                    <img src="//placekitten.com/553/200" />
+                    <img src="//placebacon.net/555/200" />
                     <p>text goes here</p>
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6">
-            <div class="panel panel-default">
+            <div class="panel panel-main">
                 <div class="panel-heading">
-                    <h2>Alpha Feedback & Suggestions</h2>
+                    <span>Alpha Feedback & Suggestions</span>
                 </div>
                 <div class="panel-body">
                     <p>
