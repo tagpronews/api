@@ -59,7 +59,7 @@
                         If you would also want to help out in any practical way, let us know.
                     </p>
 
-                    <form role="form" method="POST" action="{{ url('/') }}">
+                    <form role="form" method="POST" action="{{ url('/feedback') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">

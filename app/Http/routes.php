@@ -2,6 +2,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::post('feedback', 'HomeController@feedback');
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

@@ -1,5 +1,8 @@
 <?php namespace TagProNews\Http\Controllers;
 
+use Illuminate\Http\Request;
+use TagProNews\Models\Feedback;
+
 class HomeController extends Controller {
 
 	/*
@@ -22,5 +25,15 @@ class HomeController extends Controller {
 	{
 		return view('home');
 	}
+
+    public function feedback(Request $request)
+    {
+        $feedback = new Feedback;
+        $feedback->email = $request->input('email', null);
+        $feedback->feedback = $request->input('feedback');
+        $feedback->save();
+
+        return response('', 204);
+    }
 
 }
