@@ -72,6 +72,11 @@
 
                         <button class="btn btn-primary">SEND</button>
                     </form>
+
+                    <p>
+                        Once the final site is complete for release, this feedback suggestion will be
+                        changed with something such as league table, latest results or videos.
+                    </p>
                 </div>
             </div>
         </div>

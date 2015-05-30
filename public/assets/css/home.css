@@ -13,6 +13,7 @@ h4 {
     background-color : transparent;
     border-radius    : 0;
     border           : none;
+    border-bottom    : 5px solid #DF3442;
 }
 
 .panel-main > .panel-heading {
