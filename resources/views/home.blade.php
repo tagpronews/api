@@ -15,16 +15,18 @@
     <!-- TODO: finish button css and remove br -->
     <br>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <a href="{{ url('/leagues') }}" class="btn btn-default btn-header pull-right">
-                LEAGUE TABLE
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <a href="{{ url('/players')  }}" class="btn btn-default btn-header">
-                PLAYER RANKING
-            </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <a href="{{ url('/leagues') }}" class="btn btn-default btn-header pull-right col-md-6 col-xs-12">
+                    LEAGUE TABLE
+                </a>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <a href="{{ url('/players')  }}" class="btn btn-default btn-header col-md-6 col-xs-12">
+                    PLAYER RANKING
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -37,7 +39,7 @@
                     <span>News</span>
                 </div>
                 <div class="panel-body">
-                    <img class="auto-width" src="//placebacon.net/555/200" />
+                    <img class="auto-width-no-max" src="//placebacon.net/555/200" />
                     <p>text goes here</p>
                 </div>
             </div>
