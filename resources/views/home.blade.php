@@ -4,8 +4,8 @@
 <div class="container-fluid" style="background-color:#DF3442;padding-bottom: 100px;">
     <div class="row home-image">
         <div class="clearfix"></div>
-        <img class="center-block" alt="Logo" src="{{ asset('assets/images/home_logo.png') }}">
-        <img class="center-block" alt="Pop the balls" src="{{ asset('assets/images/home_pop.png') }}">
+        <img class="center-block auto-width" alt="Logo" src="{{ asset('assets/images/home_logo.png') }}">
+        <img class="center-block auto-width" alt="Pop the balls" src="{{ asset('assets/images/home_pop.png') }}">
     </div>
 
     <div class="row text-center">
@@ -37,7 +37,7 @@
                     <span>News</span>
                 </div>
                 <div class="panel-body">
-                    <img src="//placebacon.net/555/200" />
+                    <img class="auto-width" src="//placebacon.net/555/200" />
                     <p>text goes here</p>
                 </div>
             </div>
