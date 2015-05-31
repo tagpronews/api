@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid" style="background-color:#DF3442;padding-bottom: 150px;">
+<div class="container-fluid" style="background-color:#E03442;padding-bottom: 150px;">
 	<div class="row">
         <div style="width:300px;margin: 0 auto">
 
