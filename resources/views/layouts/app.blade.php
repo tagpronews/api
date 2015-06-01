@@ -19,7 +19,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-extra.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
 </head>

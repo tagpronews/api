@@ -2,9 +2,8 @@ body {
     background-color : #ECECEC;
 }
 
-.heading-red {
-    background-color : #E03442;
-    padding-bottom   : 100px;
+h1, h2, h3, h4, h5, h6 {
+    color : white;
 }
 
 .help-block {
@@ -36,33 +35,6 @@ body {
 .btn-primary:hover, .btn-primary:focus {
     background-color : #aa2932;
     border           : 3px solid #fff;
-}
-
-.form-helper-links a {
-    color : #fff;
-}
-
-.login-form-avatar {
-    width            : 75px;
-    height           : 75px;
-    border-radius    : 75px;
-    background-color : #fff;
-    color            : #DF3442;
-    font-weight      : 700;
-    text-align       : center;
-    vertical-align   : middle;
-    line-height      : 75px;
-    font-size        : 1.5em;
-}
-
-.auto-width {
-    max-width : 100%;
-    height    : auto;
-}
-
-.auto-width-no-max {
-    width  : 100%;
-    height : auto;
 }
 
 .table > thead {

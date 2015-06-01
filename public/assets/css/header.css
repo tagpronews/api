@@ -26,15 +26,3 @@ li.break {
     padding : 10px 0;
     color   : #9d9d9d;
 }
-
-.btn-header {
-    border-radius      : 0;
-    color              : #227fb7;
-    font-weight        : 700;
-    font-size          : 1.5em;
-    border-top-style   : none;
-    border-right-style : none;
-    border-bottom      : 4px solid #227fb7;
-    border-left-style  : none;
-    padding            : 12px 23px;
-}

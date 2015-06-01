@@ -2,37 +2,14 @@
     padding : 25px;
 }
 
-/*
- * TODO: move all header bar (red background stuff) to it's own class namespace
- */
-h4 {
-    color : white;
-}
-
-.panel-main {
-    background-color : transparent;
-    border-radius    : 0;
-    border           : none;
-    border-bottom    : 5px solid #DF3442;
-}
-
-.panel-main > .panel-heading {
-    background-color : #DFDFDF;
-    border-radius    : 0;
-    padding          : 20px 25px;
-}
-
-.panel-main > .panel-heading > span {
-    font-weight : 700;
-    font-size   : 2em;
-    color       : #E1253E;
-}
-
-.panel-main > .panel-body {
-    padding       : 15px 0;
-    border-radius : 0;
-}
-
-.panel-main > .panel-body > p {
-    font-size : 1.2em;
+.btn-header {
+    border-radius      : 0;
+    color              : #227fb7;
+    font-weight        : 700;
+    font-size          : 1.5em;
+    border-top-style   : none;
+    border-right-style : none;
+    border-bottom      : 4px solid #227fb7;
+    border-left-style  : none;
+    padding            : 12px 23px;
 }
