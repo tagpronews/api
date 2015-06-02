@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
+@endsection
+
 @section('content')
 <div class="container-fluid heading-red">
     <div class="row home-image">

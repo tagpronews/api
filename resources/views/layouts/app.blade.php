@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-extra.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
+
+    @yield('css')
+
 </head>
 <body>
 <nav class="navbar navbar-xs navbar-inverse navbar-static-top">
