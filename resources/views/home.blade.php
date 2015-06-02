@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/home.css') }}">
 @endsection
 
 @section('content')
@@ -63,7 +63,7 @@
                         If you would also want to help out in any practical way, let us know.
                     </p>
 
-                    <form role="form" method="POST" action="{{ url('/feedback') }}">
+                    <form id="feedback-form" role="form" method="POST" action="{{ url('/feedback') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -75,6 +75,8 @@
                         </div>
 
                         <button class="btn btn-primary">SEND</button>
+                        <i id="feedback-sending" class="fa fa-spinner fa-pulse" style="display:none"></i>
+                        <i id="feedback-sent" class="fa fa-check" style="display:none"></i>
                     </form>
 
                     <p>
@@ -86,4 +88,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+$( "#feedback-form" ).submit(function( event ) {
+    event.preventDefault();
+    $( "#feedback-sending" ).show();
+    $( "#feedback-sent" ).hide();
+
+    $.ajax({
+        type : 'POST',
+        url : '/feedback',
+        data : {
+            '_token' : $('input[name=_token]').val(),
+            'email' : $('input[name=email]').val(),
+            'feedback' : $('textarea[name=feedback]').val()
+        },
+        success : function(){
+            $( "#feedback-sending" ).hide();
+            $( "#feedback-sent" ).show();
+        }
+    });
+});
 @endsection
