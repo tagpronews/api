@@ -77,6 +77,7 @@
                         <button class="btn btn-primary">SEND</button>
                         <i id="feedback-sending" class="fa fa-spinner fa-pulse" style="display:none"></i>
                         <i id="feedback-sent" class="fa fa-check" style="display:none"></i>
+                        <span id="feedback-error" style="display:none"><i class="fa fa-times"></i> Something went wrong, refresh & try again</span>
                     </form>
 
                     <p>
@@ -105,8 +106,14 @@ $( "#feedback-form" ).submit(function( event ) {
             'feedback' : $('textarea[name=feedback]').val()
         },
         success : function(){
+            $('input[name=email]').val('');
+            $('textarea[name=feedback]').val('');
             $( "#feedback-sending" ).hide();
             $( "#feedback-sent" ).show();
+        },
+        error : function(){
+            $( "#feedback-sending" ).hide();
+            $( "#feedback-error" ).show();
         }
     });
 });
