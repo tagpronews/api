@@ -1,4 +1,4 @@
-<?php namespace TagProNews\Http\Controllers\Permissions;
+<?php namespace TagProNews\Http\Controllers\Admin\Permissions;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Response;

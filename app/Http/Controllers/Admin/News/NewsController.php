@@ -1,8 +1,11 @@
 <?php namespace TagProNews\Http\Controllers\Admin\News;
 
+use Illuminate\Support\Facades\Auth;
 use TagProNews\Http\Requests;
 use TagProNews\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use TagProNews\Http\Requests\Admin\News\StoreArticleRequest;
+use TagProNews\Models\Article;
 
 class NewsController extends Controller
 {
@@ -12,7 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.index');
+        return view('admin.news.index')->with('articles', Article::all()->take(10)->toArray());
     }
 
     /**
@@ -26,11 +29,21 @@ class NewsController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param StoreArticleRequest $request
+     *
      * @return Response
      */
-    public function store()
+    public function store(StoreArticleRequest $request)
     {
-        //
+        $article = new Article;
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->category_id = $request->input('category');
+        $article->user_id = Auth::id();
+        $article->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,5 +93,4 @@ class NewsController extends Controller
     {
         //
     }
-
 }

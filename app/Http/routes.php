@@ -11,7 +11,9 @@ Route::controllers([
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function ()
 {
-    Route::get('news', 'News\NewsController@index');
+    Route::resource('news', 'News\NewsController',
+        ['except' => ['create', 'edit']]
+    );
 
     Route::group(['namespace' => 'Permissions'], function ()
     {
